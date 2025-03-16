@@ -72,7 +72,7 @@ Identify high-income, high-spending customers.
 
 Define risk categories based on credit score and utilization rates.
 
-##🔹 Understanding Spending Behavior
+## 🔹 Understanding Spending Behavior
 
 Determine most frequently purchased product categories.
 
@@ -100,7 +100,7 @@ Highest Income Segments: Business Owners & Consultants
 
 Young Customers (18-25): Lower credit exposure, but potential for growth
 
-##🔹 Spending Patterns
+## 🔹 Spending Patterns
 
 ## Top 3 Spending Categories:
 
@@ -158,6 +158,6 @@ Run platform-specific promotions on Amazon, Flipkart, and Alibaba.
 
 Monitor high-risk customers with poor credit scores and high utilization.
 
-📌 Conclusion
+## 📌 Conclusion
 
 This analysis provides data-driven insights to support AtliQ Bank’s credit card launch. By leveraging customer segmentation, spending behavior insights, and risk assessments, the bank can optimize its marketing and risk management strategies effectively.
