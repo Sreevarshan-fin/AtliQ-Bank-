@@ -1,4 +1,4 @@
-## AtliQ Bank Credit Card Project - Analysis Report
+## AtliQ Bank Credit Card Project -  Exploratory Data Analysis
 
 ## 📌 Objective
 
