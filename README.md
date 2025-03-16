@@ -1,6 +1,6 @@
 ## AtliQ Bank Credit Card Project - Analysis Report
 
-📌 Objective
+##📌 Objective
 
 The primary objective of this analysis is to examine customer transactions and credit profiles to identify a target group for the launch of the AtliQ Bank credit card. The study focuses on understanding spending behavior, risk assessment, and optimizing marketing strategies based on data-driven insights.
 
