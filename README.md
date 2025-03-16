@@ -161,3 +161,7 @@ Monitor high-risk customers with poor credit scores and high utilization.
 ## 📌 Conclusion
 
 This analysis provides data-driven insights to support AtliQ Bank’s credit card launch. By leveraging customer segmentation, spending behavior insights, and risk assessments, the bank can optimize its marketing and risk management strategies effectively.
+
+
+![Analysis](https://github.com/user-attachments/assets/52152b81-1329-43d7-a812-293c5e68511b)
+
