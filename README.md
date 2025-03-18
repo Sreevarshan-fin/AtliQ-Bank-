@@ -162,65 +162,99 @@ Monitor high-risk customers with poor credit scores and high utilization.
 
 This analysis provides data-driven insights to support AtliQ Bank’s credit card launch. By leveraging customer segmentation, spending behavior insights, and risk assessments, the bank can optimize its marketing and risk management strategies effectively.
 
+# Objective
+Analyze customers' transactions and credit profiles to figure out a target group for the launch of AtliQo bank credit card.
+
 ## Datasets
-1. Customers
-2. Credit_Profiles
-3. Transaction
-4. Average Transaction After Campaign
+1. **Customers**
+2. **Credit_Profiles**
+3. **Transaction**
+4. **Average Transaction After Campaign**
 
 ## Import Data Sets Read Through SQL
 ```sql
--- Example SQL query to import datasets
+-- Example SQL command
 SELECT * FROM Customers;
-SELECT * FROM Credit_Profiles;
-SELECT * FROM Transaction;
+```
 
-🔎 Exploratory Data Analysis (EDA)
-🧑‍💻 Explore Customer Table
-Handling Missing Values in Annual Income Column
-50 null values found.
-Solution: Replace nulls with occupation-wise median income instead of removing them to retain important data.
-Customer Table Summary
-Age: min = 1, max = 135 (Valid range: 18 to 80 as per business insights)
-Annual Income: min = 2, max = 447K (Valid range: Above 100)
-🛠️ Treatment of Outliers (Annual Income)
-Standard Deviation Method: Identifies outliers beyond ±3 standard deviations.
-Decision:
-Higher income outliers are retained (valid data for business owners).
-Lower income outliers are corrected (income should be at least 100).
-Possible Treatments:
-❌ Remove Outliers → Not ideal, as we lose valid customers.
-🔄 Replace with Mean/Median → Median is preferred due to sensitivity to extreme values.
-📊 Replace with Occupation-Wise Median → Best approach for more accurate representation.
-Handling Missing Values in Age Column
-No null values detected.
-🛠️ Treatment of Outliers (Age Column)
-Observed Range: min = 1, max = 135 (Valid range: 15 to 80 as per business manager)
-20 outliers found
-Treatment Approach:
-Replace with occupation-wise median age instead of removing them.
-🏦 Explore Credit Score Table
-✅ Data Cleaning - Step 1: Removing Duplicates
-python
-Copy code
+## Exploring the Data
+```python
+df.shape
+df.describe()
+df.unique()
+df.isnull()
+df.isna()
+```
+
+# Exploratory Data Analysis
+
+## Explore Customer Table
+
+### Handling Missing Values in `Annual Income` Column
+- There are **50 null values** in the `Annual Income` column.
+- Instead of removing them (to avoid data loss), we replace them using the **occupation-wise median**.
+
+### Describe Customer Table
+- **Age:** min = 1, max = 135 (Business manager stated age should be between **18 to 80**).
+- **Annual Income:** min = 2, max = 447k (Annual Income should **not be below 100**).
+
+### Treatment of Outliers (`Annual Income`)
+- Common practice: Anything **±3 std dev** is considered an outlier.
+- **Higher-end outliers:** Business owners can have high incomes, so we keep those values.
+- **Lower-end outliers:** Business rule states that income should be at least **100**.
+  - These could be data errors.
+  - Options:
+    1. **Remove them** (but we decided to keep them).
+    2. **Replace with median** (preferred over mean).
+    3. **Replace with occupation-wise median** (best approach).
+
+### Handling Null Values in `Age` Column
+- **No Null Values Found**
+
+### Treatment of Outliers (`Age` Column)
+- **Min:** 1
+- **Max:** 135
+- Business rule: **Age should be between 15 to 80**.
+- **20 outliers found**.
+- Options:
+  1. Remove them (not ideal).
+  2. Replace with mean/median.
+  3. Use **median age per occupation** (best approach).
+
+## Explore Credit Score Table
+
+### Data Cleaning = 1 (Remove Duplicates)
+```python
 df.drop_duplicates(subset=['cust_id'], keep='last', inplace=True)
-4 duplicate rows removed (last occurrence retained).
-🛠️ Data Cleaning - Step 2: Handling NULL Values in Credit Limit Column
-65 missing values found
-Solution:
-Establish a relationship between credit score and credit limit to predict missing values.
-🚨 Data Cleaning - Step 3: Outliers in Outstanding Debts
-Identified cases where outstanding debt > credit limit (violates business logic).
-Solution: Correct cases where outstanding debt should not exceed credit limits.
-💳 Explore Transaction Table
-🛠️ Data Cleaning - Step 1: Handling NULL Values in Platform Column
-4,941 missing values
-Solution: Replace missing values with "Amazon" (most frequently used platform).
-📊 Data Cleaning - Step 2: Handling Outliers in Transaction Amount
-Used Interquartile Range (IQR) method to identify outliers.
-Solution:
-Extreme values capped at lower & upper bounds.
-Some extreme cases were removed based on business insights.
+```
+- **Total rows:** 1004
+- **Duplicate rows:** 4
+
+### Data Cleaning = 2 (Handling Null Values in `Credit Limit` Column)
+- **65 null values** in `credit_limit` column.
+- Business knowledge: Credit limit depends on **credit score**.
+- Approach:
+  - Find mathematical relationship between **credit score** & **credit limit**.
+  - Use credit score to fill NULL values.
+
+### Data Cleaning = 3 (Outliers in `Outstanding Debts`)
+- **Max `outstanding_debt` > Max `credit_limit`**.
+- Business rule: **Debt should not exceed credit limit**.
+- Identify such cases and correct them.
+
+## Explore Transaction Table
+
+### Data Cleaning = 1 (Handling NULL Values: `Platform` Column)
+- **4941 rows** have NULL values in `platform`.
+- **Amazon** is the most used platform.
+- Replace null values with **"Amazon"**.
+
+### Data Cleaning = 2 (Handling Outliers in `Trans_Amount` Column)
+- Used **IQR method** (values beyond **1.5× IQR** are outliers).
+- Approach:
+  - Cap extreme values at lower/upper bounds.
+  - Remove extreme outliers (if required).
+
 
 
 # Customer Transaction
