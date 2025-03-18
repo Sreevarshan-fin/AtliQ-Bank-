@@ -162,6 +162,105 @@ Monitor high-risk customers with poor credit scores and high utilization.
 
 This analysis provides data-driven insights to support AtliQ Bank’s credit card launch. By leveraging customer segmentation, spending behavior insights, and risk assessments, the bank can optimize its marketing and risk management strategies effectively.
 
+Exploratory Data Analysis (EDA)
+
+Exploring the Customer Table
+
+Handling Missing Values in the Annual Income Column
+
+50 null values detected.
+
+Instead of removing, missing values were replaced using the occupation-wise median for accuracy.
+
+Descriptive Statistics for the Customer Table
+
+Age: Min = 1, Max = 135 (Valid range: 18 - 80 as per business manager).
+
+Annual Income: Min = 2, Max = 447K (Valid minimum: 100 as per business rule).
+
+Handling Outliers in the Annual Income Column
+
+Outlier Detection: Standard deviation method (values beyond ±3 standard deviations considered outliers).
+
+Upper Outliers: Verified and found valid (e.g., high-income business owners).
+
+Lower Outliers: Minimum income is 2, but business rule states income should be at least 100.
+
+Treatment: Replaced values below 100 with the occupation-wise median.
+
+Handling Null Values in the Age Column
+
+No missing values found.
+
+Handling Outliers in the Age Column
+
+Min Age: 1, Max Age: 135 (Valid range: 18 - 80 as per business manager).
+
+Outliers Detected: 20 records.
+
+Treatment Options:
+
+Removing them (not ideal, as data loss occurs).
+
+Replacing with mean or median.
+
+Chosen Method: Occupation-wise median age for more accuracy.
+
+Exploring the Credit Score Table
+
+Data Cleaning 1: Removing Duplicates
+
+Total rows: 1004.
+
+Identified 4 duplicate rows based on cust_id.
+
+Last occurrence of each duplicate retained; earlier ones removed.
+
+Data Cleaning 2: Handling Missing Values in the Credit Limit Column
+
+65 null values found.
+
+Business Insight: Credit limits are linked to credit scores.
+
+Treatment: A mathematical relationship between credit score and credit limit was explored for imputation.
+
+Data Cleaning 3: Handling Outliers in Outstanding Debts
+
+Some debts exceed credit limits, which is illogical.
+
+Business Rule: A customer's debt should not exceed their credit limit.
+
+Treatment: Checked and corrected inconsistencies.
+
+Exploring the Transaction Table
+
+Data Cleaning 1: Handling Null Values in the Platform Column
+
+4941 rows have null values.
+
+Business Insight: Amazon is the most frequently used platform for purchases.
+
+Treatment: Replaced null values with "Amazon" (especially for electronic purchases).
+
+Data Cleaning 2: Handling Outliers in Transaction Amount
+
+Outlier Detection: IQR method (values beyond 1.5 times IQR considered outliers).
+
+Treatment Options:
+
+Winsorization (capping at lower and upper bounds).
+
+Removing extreme outliers (if justified by business needs).
+
+Final Notes
+
+The dataset has been thoroughly cleaned by:
+
+Handling missing values.
+
+Removing duplicates.
+
+Treating outliers using statistical and business logic.
 
 ![Analysis](https://github.com/user-attachments/assets/52152b81-1329-43d7-a812-293c5e68511b)
 
