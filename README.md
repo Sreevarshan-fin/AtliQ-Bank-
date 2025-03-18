@@ -174,7 +174,6 @@ This analysis provides data-driven insights to support AtliQ Bank’s credit car
 SELECT * FROM Customers;
 SELECT * FROM Credit_Profiles;
 SELECT * FROM Transaction;
-SELECT * FROM Average_Transaction_After_Campaign;
 
 🔎 Exploratory Data Analysis (EDA)
 🧑‍💻 Explore Customer Table
