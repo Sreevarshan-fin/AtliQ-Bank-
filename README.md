@@ -162,16 +162,15 @@ Monitor high-risk customers with poor credit scores and high utilization.
 
 This analysis provides data-driven insights to support AtliQ Bank’s credit card launch. By leveraging customer segmentation, spending behavior insights, and risk assessments, the bank can optimize its marketing and risk management strategies effectively.
 
-# Objective
-Analyze customers' transactions and credit profiles to figure out a target group for the launch of AtliQo bank credit card.
+# Project
 
 ## Datasets
 1. **Customers**
-2. **Credit_Profiles**
-3. **Transaction**
-4. **Average Transaction After Campaign**
+2. **Credit Profiles**
+3. **Transactions**
+4. **Average Transactions After Campaign**
 
-## Import Data Sets Read Through SQL
+## Importing Data Sets via SQL
 ```sql
 -- Example SQL command
 SELECT * FROM Customers;
@@ -181,79 +180,82 @@ SELECT * FROM Customers;
 ```python
 df.shape
 df.describe()
-df.unique()
+df.nunique()
 df.isnull()
 df.isna()
 ```
 
 # Exploratory Data Analysis
 
-## Explore Customer Table
+## Exploring the Customer Table
 
-### Handling Missing Values in `Annual Income` Column
+### Handling Missing Values in the `Annual Income` Column
 - There are **50 null values** in the `Annual Income` column.
-- Instead of removing them (to avoid data loss), we replace them using the **occupation-wise median**.
+- Instead of removing them (to prevent data loss), we replace them using the **occupation-wise median**.
 
-### Describe Customer Table
-- **Age:** min = 1, max = 135 (Business manager stated age should be between **18 to 80**).
-- **Annual Income:** min = 2, max = 447k (Annual Income should **not be below 100**).
+### Customer Table Summary
+- **Age:** Minimum = 1, Maximum = 135 (Business manager stated the valid age range should be **18 to 80**).
+- **Annual Income:** Minimum = 2, Maximum = 447k (Annual income should **not be below 100**).
 
-### Treatment of Outliers (`Annual Income`)
-- Common practice: Anything **±3 std dev** is considered an outlier.
-- **Higher-end outliers:** Business owners can have high incomes, so we keep those values.
-- **Lower-end outliers:** Business rule states that income should be at least **100**.
-  - These could be data errors.
-  - Options:
+### Treating Outliers in `Annual Income`
+- A common practice is to treat values that deviate **±3 standard deviations** as outliers.
+- **High-end outliers:** Business owners often have high incomes, so these values are retained.
+- **Low-end outliers:** Business rules dictate that income should be at least **100**.
+  - These values could be data errors.
+  - Possible actions:
     1. **Remove them** (but we decided to keep them).
-    2. **Replace with median** (preferred over mean).
-    3. **Replace with occupation-wise median** (best approach).
+    2. **Replace with the median** (preferred over the mean).
+    3. **Replace with the occupation-wise median** (best approach).
 
-### Handling Null Values in `Age` Column
-- **No Null Values Found**
+### Handling Null Values in the `Age` Column
+- **No null values found.**
 
-### Treatment of Outliers (`Age` Column)
-- **Min:** 1
-- **Max:** 135
-- Business rule: **Age should be between 15 to 80**.
-- **20 outliers found**.
-- Options:
-  1. Remove them (not ideal).
-  2. Replace with mean/median.
-  3. Use **median age per occupation** (best approach).
+### Treating Outliers in the `Age` Column
+- **Minimum:** 1
+- **Maximum:** 135
+- Business rules specify that **age should be between 15 and 80**.
+- **20 outliers identified.**
+- Possible actions:
+  1. Remove them (not ideal as it would lead to data loss).
+  2. Replace with the mean/median.
+  3. Use the **median age per occupation** (best approach).
 
-## Explore Credit Score Table
+## Exploring the Credit Score Table
 
-### Data Cleaning = 1 (Remove Duplicates)
+### Data Cleaning Step 1: Removing Duplicates
 ```python
 df.drop_duplicates(subset=['cust_id'], keep='last', inplace=True)
 ```
 - **Total rows:** 1004
 - **Duplicate rows:** 4
+- The last occurrence of each duplicate is retained, and earlier occurrences are removed.
 
-### Data Cleaning = 2 (Handling Null Values in `Credit Limit` Column)
-- **65 null values** in `credit_limit` column.
-- Business knowledge: Credit limit depends on **credit score**.
+### Data Cleaning Step 2: Handling Null Values in the `Credit Limit` Column
+- **65 null values** found in the `credit_limit` column.
+- Based on business knowledge, credit limits depend on **credit scores**.
 - Approach:
-  - Find mathematical relationship between **credit score** & **credit limit**.
-  - Use credit score to fill NULL values.
+  - Identify the mathematical relationship between **credit score** and **credit limit**.
+  - Use the credit score to fill in missing values in the `credit_limit` column.
 
-### Data Cleaning = 3 (Outliers in `Outstanding Debts`)
-- **Max `outstanding_debt` > Max `credit_limit`**.
-- Business rule: **Debt should not exceed credit limit**.
-- Identify such cases and correct them.
+### Data Cleaning Step 3: Identifying Outliers in `Outstanding Debts`
+- **Maximum outstanding debt exceeds the maximum credit limit.**
+- Business rules dictate that a customer’s debt should not exceed their credit limit.
+- Identify such cases and correct them accordingly.
 
-## Explore Transaction Table
+## Exploring the Transaction Table
 
-### Data Cleaning = 1 (Handling NULL Values: `Platform` Column)
-- **4941 rows** have NULL values in `platform`.
-- **Amazon** is the most used platform.
-- Replace null values with **"Amazon"**.
+### Data Cleaning Step 1: Handling Null Values in the `Platform` Column
+- **4,941 rows** contain null values in the `platform` column.
+- **Amazon** is the most frequently used platform.
+- Missing values are replaced with **"Amazon"**.
 
-### Data Cleaning = 2 (Handling Outliers in `Trans_Amount` Column)
-- Used **IQR method** (values beyond **1.5× IQR** are outliers).
+### Data Cleaning Step 2: Handling Outliers in `Transaction Amount`
+- Outliers in the `Trans_Amount` column were identified using the **IQR method**.
+- Values beyond **1.5× the interquartile range** were considered outliers.
 - Approach:
-  - Cap extreme values at lower/upper bounds.
-  - Remove extreme outliers (if required).
+  - Extreme values were capped at the lower and upper bounds.
+  - In some cases, extreme outliers were removed based on business requirements.
+
 
 
 
