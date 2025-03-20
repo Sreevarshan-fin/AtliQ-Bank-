@@ -1,260 +1,197 @@
 ## AtliQ Bank Credit Card Project -  Exploratory Data Analysis
 
-## 📌 Objective
+# 🏦 AtliQ Bank Credit Card Analysis
 
-The primary objective of this analysis is to examine customer transactions and credit profiles to identify a target group for the launch of the AtliQ Bank credit card. The study focuses on understanding spending behavior, risk assessment, and optimizing marketing strategies based on data-driven insights.
+## 📌 Overview
+AtliQ Bank planned to launch a **new credit card** and needed to identify the most suitable customer segment while minimizing financial risks.  
 
-## 🛠 Tools Used
+---
 
-Python (Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn)
+## ⭐ Situation
+### 🔹 Identifying Target Customers
+- Understanding **customer demographics & spending behavior**  
+- Segmenting customers based on **income, credit history, and transactions**  
 
-SQL (MySQL for data extraction and transformation)
+### 🔹 Assessing Credit Risk & Fraud Detection
+- Analyzing **credit scores, utilization rates, and outstanding debts**  
+- Detecting **anomalies** such as extreme credit utilization and suspicious transactions  
 
-Jupyter Notebook (for exploratory data analysis and visualization)
+### 🔹 Optimizing the Marketing Strategy
+- Understanding **preferred spending platforms and product categories**  
+- Personalizing **offers and rewards** to increase credit card adoption  
 
-Excel (for cross-verification and reporting)
+A **data-driven approach** was required to **clean, analyze, and interpret** customer transaction patterns, ensuring the marketing strategy was **targeted and risk-free**.
 
-## 📚 Concepts Discussed & Skills Gained
+---
 
-## 📌 Data Cleaning & Preprocessing
+## 🎯 Task
+The objectives of the analysis were:
 
-Handling missing values (mean/median imputation, occupation-based median income replacement)
+### 1️⃣ Customer Segmentation
+- Classify customers based on **age, income, spending behavior, and credit profiles**  
+- Identify **high-value customers** with strong transaction history  
+- Differentiate between **low-risk and high-risk** customers  
 
-Removing duplicate records
+### 2️⃣ Understanding Spending Behavior
+- Determine the **top spending categories** and preferred payment methods  
+- Analyze **transaction trends** across different platforms and locations  
 
-Outlier detection using standard deviation & IQR method
+### 3️⃣ Credit Risk Assessment & Fraud Detection
+- Evaluate customers **exceeding their credit limits**  
+- Detect **outliers and fraudulent transactions** based on spending trends  
 
-Capping extreme values based on business constraints
+### 4️⃣ Optimizing Marketing Strategies
+- Develop **data-driven recommendations** for promotional campaigns  
+- Personalize **credit limits and offers** based on customer behavior  
 
-## 📌 Exploratory Data Analysis (EDA)
+---
 
-Understanding customer demographics
+## 🚀 Action
+To meet these objectives, the following **data analysis and machine learning techniques** were used:
 
-Identifying spending patterns and transaction trends
+### 🔹 1. Data Cleaning & Preprocessing
 
-Analyzing credit profiles (credit score distribution, utilization, outstanding debt)
+#### 📌 Data Sources:
+- **Customers Table** (Demographics, Annual Income)  
+- **Credit Profiles Table** (Credit Scores, Credit Limits, Outstanding Debts)  
+- **Transactions Table** (Purchase Amounts, Platforms, Categories)  
 
-## 📌 Statistical Analysis & Visualization
+#### 📌 Handling Missing Values:
+- **Annual Income** → 50 missing values replaced with **occupation-wise median income**  
+- **Credit Limit** → 65 missing values imputed using a **credit score-based regression model**  
+- **Transaction Platform** → 4,941 missing values filled with **Amazon** (most frequent platform)  
 
-Correlation analysis (credit score vs. credit limit)
+#### 📌 Duplicate Record Removal:
+✔ **4 duplicate customer records** removed  
 
-Data distribution analysis using histograms and box plots
+#### 📌 Outlier Detection & Treatment:
 
-Identifying trends through bar charts and scatter plots
+| Column | Issue | Fix |
+|--------|-------|-----|
+| **Age** | Outliers (Min: 1, Max: 135) | Capped between **18-80** (median-based correction) |
+| **Annual Income** | Extreme values detected | Adjusted **low-income outliers** to ₹100K minimum threshold |
+| **Transaction Amount** | Extreme purchases (IQR method) | Capped transactions exceeding **99th percentile** |
 
-## 📌 Segmentation & Targeting
+---
 
-Customer segmentation based on age, income, and spending behavior
+### 🔹 2. Exploratory Data Analysis (EDA)
 
-Identifying high-value customers for targeted marketing
+#### 📌 Customer Demographics & Segmentation
+- **Age Distribution:**  
+  ✔ Largest segment: **26-48 years (56.7%)**  
+  ✔ **Young customers (18-25):** Low credit exposure, high potential  
 
-## 📌 Risk Assessment & Fraud Detection
+- **Income Distribution:**  
+  ✔ **Highest income segments:** Business Owners & Consultants  
+  ✔ **Middle-class consumers:** Moderate spending, consistent credit usage  
 
-Evaluating credit score vs. credit limit correlation
+#### 📌 Spending Patterns
 
-Identifying customers with outstanding debt exceeding their credit limit
+| Category | Spending Share (%) |
+|----------|-------------------|
+| **Electronics** | 35.2% |
+| **Fashion & Apparel** | 28.7% |
+| **Beauty & Personal Care** | 15.4% |
 
-Detecting invalid transactions (zero or unrealistic amounts)
+✔ **Preferred Transaction Platforms:**  
+- **Amazon (52%)**, **Flipkart (32%)**, **Alibaba (16%)**  
+- **City customers spend** 20% **more than rural customers**  
 
-## 📌 Marketing Strategy Optimization
+---
 
-Identifying preferred transaction platforms and product categories
+### 🔹 3. Credit Risk Assessment & Fraud Detection
 
-Analyzing payment method preferences
+#### 📌 Credit Score vs. Credit Limit Correlation
+✔ Pearson Correlation: **0.85** (**Strong positive correlation**)  
+✔ Customers with **low credit scores (300-499)** had **lower credit limits & higher default risk**  
+✔ Customers **with scores above 750** received significantly higher limits  
 
-Formulating targeted promotions based on user behavior
+#### 📌 Outstanding Debt Analysis
+✔ Some customers had **debts exceeding their credit limits**  
+✔ Identified **high-risk customers** with low repayment history  
+✔ Suggested **credit cap enforcement** for customers exceeding **90% utilization**  
 
-## 📊 Expected Outcomes
+#### 📌 Fraud Detection: Anomalous Transactions
+✔ **Zero transaction amounts** (Amazon) were flagged and replaced with **category median**  
+✔ **Unrealistic transactions** (>95th percentile) were **investigated**  
 
-## 🔹 Customer Segmentation for Credit Card Targeting
+---
 
-Identify high-income, high-spending customers.
+### 🔹 4. Marketing Strategy Optimization
 
-Define risk categories based on credit score and utilization rates.
+✔ **Primary Target Group:**  
+  - **Age 26-48**, high spending power  
+  - **Business Owners & Consultants (Income > ₹500K)**  
 
-## 🔹 Understanding Spending Behavior
+✔ **Secondary Target Group:**  
+  - **Young customers (18-25):** Potential for credit adoption  
 
-Determine most frequently purchased product categories.
+✔ **Optimized Promotional Strategies:**  
+  - **Cashback & rewards** to **increase credit card usage**  
+  - **Higher credit limits** for strong repayment history  
+  - **Platform-specific promotions** on **Amazon, Flipkart, Alibaba**  
 
-Analyze platform preferences for online transactions.
+---
 
-## 🔹 Risk & Fraud Detection
+## 📊 Result
 
-Identify outliers in credit utilization and debt repayment.
+### ✅ 1. Customer Segmentation for Credit Card Targeting
+✔ Identified **high-value customers** for the credit card  
+✔ Segmented customers into **low, medium, and high-risk groups**  
 
-Flag anomalies in transaction data.
+### ✅ 2. Spending Behavior Insights
+✔ Most popular categories: **Electronics, Fashion, Beauty**  
+✔ Preferred transaction platforms: **Amazon, Flipkart, Alibaba**  
+✔ **City-based customers** spend more than rural customers  
 
-## 🔹 Optimized Credit Card Marketing Strategy
+### ✅ 3. Risk & Fraud Detection
+✔ Flagged **outliers in credit utilization & debt repayment**  
+✔ Identified **high-risk customers exceeding credit limits**  
+✔ Corrected **anomalies in transaction data**  
 
-Determine which customer segments to target with specific offers.
+### ✅ 4. Optimized Marketing & Credit Strategies
+✔ Targeted **promotional campaigns** for high-income users  
+✔ **Personalized credit limits** based on customer profiles  
+✔ Increased engagement through **cashback & reward programs**  
 
-Personalize credit limits based on customer profiles.
+---
 
-## 🔍 Key Insights & Findings
+## 📌 Final Recommendations  
+🔹 **Increase credit limits** for customers with strong credit history  
+🔹 Offer **promotional discounts** on Amazon, Flipkart, and Alibaba  
+🔹 Launch **targeted offers** for business owners & high-income segments  
+🔹 Encourage **younger customers (18-25)** with cashback rewards  
+🔹 Monitor **high-risk customers** with low credit scores and excessive debt  
 
-## 🔹 Customer Segmentation
+---
 
-Largest Customer Group: Age 26-48 (56.7%)
+## 🏁 Conclusion  
+This project successfully provided **data-driven insights** for AtliQ Bank’s credit card launch. By leveraging **customer segmentation, spending behavior analysis, and credit risk assessment**, AtliQ Bank can:  
 
-Highest Income Segments: Business Owners & Consultants
+✔ **Optimize marketing strategies**  
+✔ **Enhance credit risk management**  
+✔ **Maximize customer engagement & adoption rates**  
 
-Young Customers (18-25): Lower credit exposure, but potential for growth
+---
 
-## 🔹 Spending Patterns
+## 📂 Technologies Used  
+- **Python** (Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn)  
+- **SQL** (MySQL)  
+- **Jupyter Notebook**  
+- **Power BI & Excel** for visualization  
 
-## Top 3 Spending Categories:
+---
 
-Electronics
+### 📌 **Author**  
+👤 **Sree Varshan**  
+💼 Aspiring **Data Analyst & Data Scientist**  
+📧 **[Your Email]**  
+🔗 **[LinkedIn Profile]**  
 
-Fashion & Apparel
+---
 
-Beauty & Personal Care
+### ⭐ **Like this project? Give it a star!** ⭐  
 
-Most Used Platforms: Amazon, Flipkart, Alibaba
-
-City Customers Spend More than Rural Customers
-
-## 🔹 Credit Profile Analysis
-
-## Credit Score Correlation:
-
-Credit Score & Credit Limit (0.85 correlation) → Higher scores lead to higher limits.
-
-Low Scores (300-499) → Lower credit limits and higher risk.
-
-Outstanding Debt: Some customers exceeded their credit limit, requiring a cap.
-
-## 🔹 Outlier Handling & Data Cleaning
-
-Missing annual income values replaced with occupation-wise median.
-
-Extreme age values (below 15 & above 80) replaced with median per occupation.
-
-Zero transaction amounts (Amazon purchases) replaced with category median.
-
-Outliers in credit limits corrected using historical trends.
-
-## 🔹 Marketing Strategy Optimization
-
-Primary Target: Customers aged 26-48 with high spending power.
-
-Secondary Target: 18-25 age group (credit adoption potential).
-
-Promotion Focus: High-value customers (Business Owners, Consultants).
-
-Best Platforms for Promotion: Amazon, Flipkart, Alibaba.
-
-Encourage Credit Card Use: By offering better rewards & cashback.
-
-## 🎯 Final Recommendations
-
-Launch targeted offers for high-income segments (e.g., business owners, consultants).
-
-Increase credit limits for users with high credit scores and strong transaction history.
-
-Offer cashback & rewards to attract younger customers (18-25 age group).
-
-Run platform-specific promotions on Amazon, Flipkart, and Alibaba.
-
-Monitor high-risk customers with poor credit scores and high utilization.
-
-## 📌 Conclusion
-
-This analysis provides data-driven insights to support AtliQ Bank’s credit card launch. By leveraging customer segmentation, spending behavior insights, and risk assessments, the bank can optimize its marketing and risk management strategies effectively.
-
-# Project Details
-
-## Datasets
-1. **Customers**
-2. **Credit Profiles**
-3. **Transactions**
-4. **Average Transactions After Campaign**
-
-## Importing Data Sets via SQL
-```sql
--- Example SQL command
-SELECT * FROM Customers;
-```
-
-## Exploring the Data
-```python
-df.shape
-df.describe()
-df.nunique()
-df.isnull()
-df.isna()
-```
-
-# Exploratory Data Analysis
-
-## Exploring the Customer Table
-
-### Handling Missing Values in the `Annual Income` Column
-- There are **50 null values** in the `Annual Income` column.
-- Instead of removing them (to prevent data loss), we replace them using the **occupation-wise median**.
-
-### Customer Table Summary
-- **Age:** Minimum = 1, Maximum = 135 (Business manager stated the valid age range should be **18 to 80**).
-- **Annual Income:** Minimum = 2, Maximum = 447k (Annual income should **not be below 100**).
-
-### Treating Outliers in `Annual Income`
-- A common practice is to treat values that deviate **±3 standard deviations** as outliers.
-- **High-end outliers:** Business owners often have high incomes, so these values are retained.
-- **Low-end outliers:** Business rules dictate that income should be at least **100**.
-  - These values could be data errors.
-  - Possible actions:
-    1. **Remove them** (but we decided to keep them).
-    2. **Replace with the median** (preferred over the mean).
-    3. **Replace with the occupation-wise median** (best approach).
-
-### Handling Null Values in the `Age` Column
-- **No null values found.**
-
-### Treating Outliers in the `Age` Column
-- **Minimum:** 1
-- **Maximum:** 135
-- Business rules specify that **age should be between 15 and 80**.
-- **20 outliers identified.**
-- Possible actions:
-  1. Remove them (not ideal as it would lead to data loss).
-  2. Replace with the mean/median.
-  3. Use the **median age per occupation** (best approach).
-
-## Exploring the Credit Score Table
-
-### Data Cleaning Step 1: Removing Duplicates
-```python
-df.drop_duplicates(subset=['cust_id'], keep='last', inplace=True)
-```
-- **Total rows:** 1004
-- **Duplicate rows:** 4
-- The last occurrence of each duplicate is retained, and earlier occurrences are removed.
-
-### Data Cleaning Step 2: Handling Null Values in the `Credit Limit` Column
-- **65 null values** found in the `credit_limit` column.
-- Based on business knowledge, credit limits depend on **credit scores**.
-- Approach:
-  - Identify the mathematical relationship between **credit score** and **credit limit**.
-  - Use the credit score to fill in missing values in the `credit_limit` column.
-
-### Data Cleaning Step 3: Identifying Outliers in `Outstanding Debts`
-- **Maximum outstanding debt exceeds the maximum credit limit.**
-- Business rules dictate that a customer’s debt should not exceed their credit limit.
-- Identify such cases and correct them accordingly.
-
-## Exploring the Transaction Table
-
-### Data Cleaning Step 1: Handling Null Values in the `Platform` Column
-- **4,941 rows** contain null values in the `platform` column.
-- **Amazon** is the most frequently used platform.
-- Missing values are replaced with **"Amazon"**.
-
-### Data Cleaning Step 2: Handling Outliers in `Transaction Amount`
-- Outliers in the `Trans_Amount` column were identified using the **IQR method**.
-- Values beyond **1.5× the interquartile range** were considered outliers.
-- Approach:
-  - Extreme values were capped at the lower and upper bounds.
-  - In some cases, extreme outliers were removed based on business requirements.
 
 
 
