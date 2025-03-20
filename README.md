@@ -185,8 +185,8 @@ This project successfully provided **data-driven insights** for AtliQ Bank’s c
 ### 📌 **Author**  
 👤 **Sree Varshan**  
 💼 Aspiring **Data Analyst & Data Scientist**  
-📧 **[Your Email]**  
-🔗 **[LinkedIn Profile]**  
+📧 **itssreevarshan@gmail.com**  
+🔗 **[https://www.linkedin.com/posts/sreevarshan-sivagnanam-7ab463337_atliq-bank-credit-card-project-analysis-activity-7306989340310597632--ejv?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFSbXrMBWmP2PBMOQmNixUn6QDyPj9ptl-w]**  
 
 ---
 
