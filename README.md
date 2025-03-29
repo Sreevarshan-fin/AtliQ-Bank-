@@ -1,6 +1,5 @@
 ## AtliQ Bank Credit Card Project -  Exploratory Data Analysis
 
-# 🏦 AtliQ Bank Credit Card Analysis
 
 ## 📌 Overview
 AtliQ Bank planned to launch a **new credit card** and needed to identify the most suitable customer segment while minimizing financial risks.  
