@@ -171,25 +171,10 @@ This project successfully provided **data-driven insights** for AtliQ Bank’s c
 ✔ **Enhance credit risk management**  
 ✔ **Maximize customer engagement & adoption rates**  
 
----
 
-## 📂 Technologies Used  
-- **Python** (Pandas, NumPy, Matplotlib, Seaborn, Scikit-learn)  
-- **SQL** (MySQL)  
-- **Jupyter Notebook**  
-- **Power BI & Excel** for visualization  
+ 
 
 ---
-
-### 📌 **Author**  
-👤 **Sree Varshan**  
-💼 Aspiring **Data Analyst & Data Scientist**  
-📧 **itssreevarshan@gmail.com**  
-🔗 **[https://www.linkedin.com/posts/sreevarshan-sivagnanam-7ab463337_atliq-bank-credit-card-project-analysis-activity-7306989340310597632--ejv?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFSbXrMBWmP2PBMOQmNixUn6QDyPj9ptl-w]**  
-
----
-
-### ⭐ **Like this project? Give it a star!** ⭐  
 
 
 
